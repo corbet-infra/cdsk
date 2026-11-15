@@ -62,8 +62,8 @@ Both commands print one command per line on standard output and the events as
 JSON lines on standard error. Nothing is executed without `--apply`.
 
 In a deployment, `--state` is produced from the host's own `zfs get -j`,
-`zfs list -j` and `lstat` output plus the instance table (private, in
-`corbet-infra/instances`); the fixture in `fixtures/state.json` shows the
+`zfs list -j` and `lstat` output plus the instance table (kept
+in a private repository); the fixture in `fixtures/state.json` shows the
 shape with synthetic names.
 
 ## How to run the tests
