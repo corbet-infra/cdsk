@@ -1,0 +1,37 @@
+{
+  "partitiontable": {
+    "label": "gpt",
+    "id": "3F2504E0-4F89-11D3-9A0C-0305E82C3301",
+    "device": "/dev/disk/by-id/example-disk",
+    "unit": "sectors",
+    "firstlba": 256,
+    "lastlba": 262143,
+    "sectorsize": 4096,
+    "partitions": [
+      {
+        "node": "/dev/disk/by-id/example-disk-part1",
+        "start": 256,
+        "size": 65536,
+        "type": "C12A7328-F81F-11D2-BA4B-00A0C93EC93B",
+        "uuid": "6F7C1E5A-9B3D-4A20-8F11-2C4D5E6F7A8B",
+        "name": "ESP"
+      },
+      {
+        "node": "/dev/disk/by-id/example-disk-part2",
+        "start": 65792,
+        "size": 32768,
+        "type": "0FC63DAF-8483-4772-8E79-3D69D8477DE4",
+        "uuid": "0B5C2D7E-1A49-4F3B-9C88-7D6E5F4A3B2C",
+        "name": "pool-member"
+      },
+      {
+        "node": "/dev/disk/by-id/example-disk-part3",
+        "start": 98560,
+        "size": 163584,
+        "type": "CA7D7CCB-63ED-4C53-861C-1742536059CC",
+        "uuid": "9A8B7C6D-5E4F-4321-8765-ABCDEF012345",
+        "name": "vault"
+      }
+    ]
+  }
+}

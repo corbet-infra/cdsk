@@ -1,0 +1,34 @@
+{
+  "output_version": {
+    "command": "zfs list",
+    "vers_major": 0,
+    "vers_minor": 1
+  },
+  "datasets": {
+    "tank": {
+      "name": "tank",
+      "properties": {
+        "used": {
+          "value": "4096",
+          "source": "-"
+        }
+      }
+    },
+    "tank/apps": {
+      "name": "tank/apps",
+      "properties": {}
+    },
+    "tank/apps/data": {
+      "name": "tank/apps/data",
+      "properties": {}
+    },
+    "tank/media": {
+      "name": "tank/media",
+      "properties": {}
+    },
+    "tank/media/archive": {
+      "name": "tank/media/archive",
+      "properties": {}
+    }
+  }
+}

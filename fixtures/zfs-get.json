@@ -1,0 +1,37 @@
+{
+  "output_version": {
+    "command": "zfs get",
+    "vers_major": 0,
+    "vers_minor": 1
+  },
+  "datasets": {
+    "tank/apps/data": {
+      "properties": {
+        "recordsize": {
+          "value": "32768",
+          "source": "local"
+        },
+        "compression": {
+          "value": "zstd",
+          "source": "local"
+        },
+        "atime": {
+          "value": "off",
+          "source": "local"
+        }
+      }
+    },
+    "tank/media": {
+      "properties": {
+        "recordsize": {
+          "value": "1048576",
+          "source": "local"
+        },
+        "compression": {
+          "value": "lz4",
+          "source": "default"
+        }
+      }
+    }
+  }
+}

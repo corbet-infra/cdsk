@@ -1,0 +1,146 @@
+{
+  "datasets": {
+    "output_version": {
+      "command": "zfs get",
+      "vers_major": 0,
+      "vers_minor": 1
+    },
+    "datasets": {
+      "tank/apps/data": {
+        "properties": {
+          "recordsize": {
+            "value": "128K",
+            "source": "inherited from tank/apps"
+          },
+          "compression": {
+            "value": "zstd",
+            "source": "local"
+          },
+          "atime": {
+            "value": "off",
+            "source": "local"
+          },
+          "origin": {
+            "value": "-",
+            "source": "-"
+          }
+        }
+      },
+      "tank/media": {
+        "properties": {
+          "recordsize": {
+            "value": "1M",
+            "source": "local"
+          },
+          "compression": {
+            "value": "lz4",
+            "source": "local"
+          }
+        }
+      },
+      "tank/media/archive": {
+        "properties": {
+          "recordsize": {
+            "value": "128K",
+            "source": "inherited from tank/media"
+          },
+          "compression": {
+            "value": "lz4",
+            "source": "local"
+          }
+        }
+      },
+      "tank/structural": {
+        "properties": {}
+      },
+      "tank/apps/vms/example": {
+        "properties": {
+          "volblocksize": {
+            "value": "4096",
+            "source": "local"
+          },
+          "origin": {
+            "value": "-",
+            "source": "-"
+          }
+        }
+      },
+      "tank/apps/vmdev/example-vm": {
+        "properties": {
+          "volblocksize": {
+            "value": "4096",
+            "source": "local"
+          },
+          "origin": {
+            "value": "tank/apps/vms/example@clean",
+            "source": "-"
+          }
+        }
+      }
+    }
+  },
+  "snapshots": {
+    "output_version": {
+      "command": "zfs list",
+      "vers_major": 0,
+      "vers_minor": 1
+    },
+    "datasets": {
+      "tank/apps/vms/example@clean": {
+        "name": "tank/apps/vms/example@clean"
+      },
+      "tank/apps/vmdev/example-vm@clean": {
+        "name": "tank/apps/vmdev/example-vm@clean"
+      },
+      "tank/apps/vmdev/example-vm@image-v1": {
+        "name": "tank/apps/vmdev/example-vm@image-v1"
+      }
+    }
+  },
+  "paths": {
+    "/tank/media": {
+      "uid": 1000,
+      "gid": 100,
+      "mode": "2750",
+      "dir": true
+    },
+    "/tank/media/archive": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0755",
+      "dir": true
+    },
+    "/tank/media/scratch": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0755",
+      "dir": true
+    },
+    "/tank/apps/data": {
+      "uid": 3002,
+      "gid": 3002,
+      "mode": "0750",
+      "dir": true
+    },
+    "/tank/apps/data/cache": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0700",
+      "dir": true
+    },
+    "/var/lib/cdsk/example-vm.save": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0600",
+      "dir": false
+    }
+  },
+  "instances": {
+    "example-vm": {
+      "instance": "example-vm",
+      "dataset": "tank/apps/vmdev/example-vm",
+      "base": "tank/apps/vms/example",
+      "save_image": "/var/lib/cdsk/example-vm.save"
+    }
+  }
+}

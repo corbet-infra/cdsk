@@ -1,0 +1,26 @@
+{
+  "toleranceMiB": 1,
+  "targets": {
+    "example-disk": {
+      "device": "/dev/disk/by-id/example-disk",
+      "sectorSize": 4096,
+      "partitions": [
+        {
+          "name": "ESP",
+          "typeGuid": "c12a7328-f81f-11d2-ba4b-00a0c93ec93b",
+          "sizeMiB": 256
+        },
+        {
+          "name": "pool-member",
+          "typeGuid": "0fc63daf-8483-4772-8e79-3d69d8477de4",
+          "sizeMiB": 128
+        },
+        {
+          "name": "vault",
+          "typeGuid": "ca7d7ccb-63ed-4c53-861c-1742536059cc",
+          "sizeMiB": null
+        }
+      ]
+    }
+  }
+}

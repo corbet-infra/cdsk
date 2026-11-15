@@ -1,0 +1,53 @@
+{
+  "classes": {
+    "appdata": {
+      "recordsize": "32K",
+      "compression": "zstd",
+      "properties": {
+        "atime": "off"
+      }
+    },
+    "media": {
+      "recordsize": "1M",
+      "compression": "lz4"
+    }
+  },
+  "datasets": {
+    "tank/apps/data": {
+      "class": "appdata"
+    },
+    "tank/media": {
+      "class": "media",
+      "children": "reconcile"
+    },
+    "tank/structural": {
+      "class": null
+    }
+  },
+  "reconciler": {
+    "roots": {
+      "/tank/media": {
+        "uid": 1000,
+        "gid": 100,
+        "mode": "2750",
+        "recurse": true
+      }
+    },
+    "leaves": {
+      "/tank/apps/data": {
+        "uid": 3002,
+        "gid": 3002,
+        "mode": "0750"
+      },
+      "/tank/apps/data/cache": {
+        "uid": 3003,
+        "gid": 3003,
+        "mode": "0700",
+        "reconcile": false
+      }
+    },
+    "prune": [
+      "/tank/media/scratch"
+    ]
+  }
+}
