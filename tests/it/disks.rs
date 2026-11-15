@@ -157,11 +157,12 @@ fn reset_rolls_back_and_drops_newer_snapshots_safely() {
     let plan = plan_reset(&example_disk(), CLEAN, &zfs, &fs, &mut log, common::at())
         .expect("the instance disk is a clone of the declared base");
     let argvs = common::argvs(&plan);
-    assert_eq!(argvs[0], ["rm", "-f", "/var/lib/cdsk/example-vm.save"]);
+    // The rollback runs first: a failed rollback must not cost the save image.
     assert_eq!(
-        argvs[1],
+        argvs[0],
         ["zfs", "rollback", "-r", "tank/apps/vmdev/example-vm@clean"]
     );
+    assert_eq!(argvs[1], ["rm", "-f", "/var/lib/cdsk/example-vm.save"]);
     assert_eq!(argvs.len(), 2);
     assert!(plan.events.iter().any(|event| {
         event.kind == "disk.reset" && event.data["removed_save"] == serde_json::json!(true)

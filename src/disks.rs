@@ -239,19 +239,19 @@ pub fn plan_reset(
     }
 
     let mut plan = Plan::new();
-    let removed_save = match crate::save::plan_remove_worthless(disk, fs)? {
-        Some(action) => {
-            plan.push(action);
-            true
-        }
-        None => false,
-    };
+    let save_action = crate::save::plan_remove_worthless(disk, fs)?;
+    let removed_save = save_action.is_some();
     plan.push(Action::new([
         "zfs".to_owned(),
         "rollback".to_owned(),
         "-r".to_owned(),
         format!("{}@{snapshot}", disk.dataset),
     ]));
+    // The save image goes only after the rollback succeeded: a failed rollback
+    // leaves the disk as it was, so the image is still worth keeping.
+    if let Some(action) = save_action {
+        plan.push(action);
+    }
     plan.emit(log.emit(
         at,
         "disk.reset",
