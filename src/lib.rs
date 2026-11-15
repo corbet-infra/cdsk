@@ -60,7 +60,7 @@ pub mod units;
 pub mod zfs;
 
 pub use decl::Declaration;
-pub use disks::{DiskReset, DiskResetter, InstanceDisk};
+pub use disks::{DiskResetter, InstanceDisk};
 pub use error::{Error, Result};
 pub use fs::{Fs, RealFs};
 pub use layout::LayoutDecl;

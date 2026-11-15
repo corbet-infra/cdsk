@@ -275,14 +275,7 @@ fn validate_snapshot_name(name: &str) -> Result<()> {
     Ok(())
 }
 
-/// The storage action `cwld` leaves open, mirrored from `cwld::ports::DiskReset`
-/// so that moving the trait into `cdrv` needs no change here.
-pub trait DiskReset {
-    /// Reset the instance's disk to its clean snapshot.
-    fn reset_to_clean(&self, instance: &InstanceId) -> cdrv::Result<()>;
-}
-
-/// Implements [`DiskReset`] through [`plan_reset`].
+/// Implements the contract's [`cdrv::DiskReset`] through [`plan_reset`].
 pub struct DiskResetter<'a> {
     zfs: &'a dyn Zfs,
     fs: &'a dyn Fs,
@@ -327,7 +320,7 @@ impl<'a> DiskResetter<'a> {
     }
 }
 
-impl DiskReset for DiskResetter<'_> {
+impl cdrv::DiskReset for DiskResetter<'_> {
     fn reset_to_clean(&self, instance: &InstanceId) -> cdrv::Result<()> {
         let disk = self
             .disks

@@ -18,8 +18,9 @@ plans; running a plan needs an explicit `--apply`.
   reported and never touched.
 - **Instance disks.** A 4Kn zvol (`volblocksize=4096`), a clone of a base
   image's `@clean` snapshot, snapshots under class-understood names, and reset
-  to `@clean` by `zfs rollback -r`. Also implements the disk-reset seam that
-  `cwld` leaves open (`DiskReset`).
+  to `@clean` by `zfs rollback -r`. Implements the contract's `cdrv::DiskReset`,
+  the seam `cwld` calls; which dataset, base and save image belong to an
+  instance is cdsk's own deployment data, not the contract's.
 - **Layout verify.** `sfdisk --json` against a declared partition table:
   names, type GUIDs, sizes and sector size, read-only.
 - **Save images.** A rollback removes the managed save it makes worthless; a

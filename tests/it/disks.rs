@@ -2,11 +2,12 @@
 
 use cdrv::{InstanceId, SectorSize};
 
+use cdrv::DiskReset;
 use cdsk::disks::{
     CLEAN, InstanceDisk, plan_clone_image, plan_create_zvol, plan_reset, plan_snapshot,
 };
 use cdsk::fixture::{FixtureFs, FixtureZfs, RecordingRunner};
-use cdsk::{DiskReset, DiskResetter, Error, Fs, Zfs};
+use cdsk::{DiskResetter, Error, Fs, Zfs};
 
 use crate::common;
 
