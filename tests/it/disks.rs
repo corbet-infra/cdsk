@@ -251,7 +251,7 @@ fn the_disk_reset_seam_executes_the_plan() {
         .expect("the bound instance resets");
     let actions = runner.actions();
     assert_eq!(
-        actions.last().map(|action| action.argv.clone()),
+        actions.first().map(|action| action.argv.clone()),
         Some(vec![
             "zfs".to_owned(),
             "rollback".to_owned(),
